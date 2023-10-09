@@ -9,7 +9,7 @@ class AccountController {
             return res.send("Usuario nao encontrado")
         }
 
-        return res.send("Account")
+        return res.json(infos)
     }
 
     async create(req, res) {
