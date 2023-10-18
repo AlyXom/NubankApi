@@ -1,16 +1,22 @@
+require("dotenv").config()
 const path = require("path")
 
 module.exports = {
     development: {
-        client: "sqlite3",
-        connection: {
-            filename: path.resolve(__dirname, "src", "database", "database.db")
-        },
+        client: "mysql2",
+        connection: process.env.DATABASE_URL,
         pool: {
-            afterCreate: (conn, cb) => conn.run("PRAGMA foreign_keys=ON", cb)
-        },
+            afterCreate: (conn, cb) => {
+              conn.query("SET foreign_key_checks = 1", (err) => {
+                if (err) {
+                  console.error(err);
+                }
+                cb(err, conn);
+              });
+            },
+          },
         migrations: {
-            directory: path.resolve(__dirname, "src", "database", "knex", "migrations")
+            directory: path.resolve(__dirname, "src", "database", "mysql", "migrations")
         },
         useNullAsDefault: true
     }
