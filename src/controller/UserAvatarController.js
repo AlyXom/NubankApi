@@ -21,7 +21,7 @@ class UserAvatarController {
 
         await knex("users").update(user).where({ id: user_id })
 
-        return res.send("Foto atualizada")
+        return res.send(user)
 
     }
 }

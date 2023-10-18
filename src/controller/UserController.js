@@ -43,7 +43,7 @@ class UserController {
         await knex("users").update(user).where({ id: user_id })
 
 
-        return res.send("Rota de atualizacao")
+        return res.send(user)
     }
 }
 

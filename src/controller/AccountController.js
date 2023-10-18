@@ -57,7 +57,7 @@ class AccountController {
 
         await knex("accountUser").update(account).where({ user_id })
 
-        return res.send("Atualizado")
+        return res.send(account)
     }
 
 }
