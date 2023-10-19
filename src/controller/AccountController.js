@@ -46,6 +46,7 @@ class AccountController {
     async update(req, res) {
         const { amount, invoiceAmount, paymentData, invoiceClosing, creditCard, loan } = req.body
         const user_id = req.user.id
+        console.log(req.body)
         const account = await knex("accountUser").where({ user_id }).first()
 
         account.amount = amount ?? account.amount
